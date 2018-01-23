@@ -1,0 +1,37 @@
+-- create new branch
+			gir branch <name>
+			
+-- switch branch 
+		git checkout <name>
+		
+
+make changes
+
+-- commit to branch
+		git add --all
+		git commit -m 'messge of change'
+		
+-- switch branch
+	git checkout master
+
+go to master and merge
+
+	git merge <name branch>
+	
+remove branch
+		git branch -d <branch name>
+		
+		
+other way
+
+	git branch <new branch>
+	git checkout <new branch>
+	git add --all
+	git commit -m'home  change'
+	
+push branch to git
+	git push origin <branch name>
+	git checkout master
+	git merge <home change>
+	git push origin master
+	
