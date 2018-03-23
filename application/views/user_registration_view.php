@@ -40,7 +40,7 @@
 			</div>
 
                 <div class="form-group">
-                    <button name="submit" type="submit" class="btn btn-default">Signup</button>
+                    <button name="submit" type="submit" class="btn btn-default">Sign up</button>
                     <button name="cancel" type="reset" class="btn btn-default">Cancel</button>
                 </div>
                 <?php echo form_close(); ?>
