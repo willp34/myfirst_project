@@ -3,8 +3,14 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeIgniter User Registration Form Demo</title>
-    <link href="<?php echo base_url("assets/css/bootstrap.css"); ?>" rel="stylesheet" type="text/css" />
+	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="<?php echo base_url("style/home.css"); ?>" rel="stylesheet" type="text/css" />
+  
 	</head>
 <body>
 <div class="container col-md-12 ">
@@ -82,11 +88,13 @@
   </div>
 </div>
 
-    <script  type="text/javascript" src="<?php echo base_url("js/jquery-1.9.1.min.js"); ?>" rel="stylesheet"></script>
-	<script   >
-			var base = <?php echo base_url()?>
-	</script>
-	<script  type="text/javascript" src="<?php echo base_url("js/homepage.js"); ?>" ></script>
-	<script  type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.min.js"); ?>" ></script>
+    <script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script  type="text/javascript" src="<?php echo base_url("js/homepage.js"); ?>" ></script>
+  
 </body>
 </html>
