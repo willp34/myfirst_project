@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/cable/';
+$config['base_url']	= 'http://localhost/blubolt_demo/';
 
 /*
 |--------------------------------------------------------------------------

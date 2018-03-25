@@ -5,7 +5,7 @@ $(document).ready(function () {
 	
 	  $.ajax({
 			 type: 'POST',
-			 url: 'http://localhost/cable/index.php/user/register',
+			 url: 'http://localhost/blubolt_demo/index.php/user/register',
 			dataType: "json",
 			data: data,
 			success: function(resp) { 
