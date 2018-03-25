@@ -20,9 +20,9 @@ class user extends CI_Controller
     {
 		$responce ="";
         //set validation rules
-        $this->form_validation->set_rules('fname', 'First Name', 'trim|required|alpha|min_length[3]|max_length[30]|xss_clean');
-        $this->form_validation->set_rules('lname', 'Comment', 'trim|required|min_length[3]|xss_clean|callback_alpha_numeric_spaces');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[mailing_list.email]');
+        $this->form_validation->set_rules('fname', 'Name', 'trim|required|alpha|min_length[3]|max_length[30]|xss_clean');
+        $this->form_validation->set_rules('email', 'E-mail', 'trim|required|valid_email|is_unique[mailing_list.email]');
+        $this->form_validation->set_rules('lname', 'Enquiry text', 'trim|required|min_length[3]|xss_clean|callback_alpha_numeric_spaces');
   
         
         //validate form input

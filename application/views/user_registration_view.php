@@ -25,13 +25,13 @@
     <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>User Registration Form</h4>
+                <h4>Customer Enquiry Form</h4>
             </div>
             <div class="panel-body">
                 <?php $attributes = array("id" => "target","name" => "registrationform");
                 echo form_open("user/register", $attributes);?>
                 <div class="form-group">
-                    <label for="name">First Name</label>
+                    <label for="name">Name</label>
                     <input class="form-control" name="fname" placeholder="Name" type="text" value="<?php echo set_value('fname'); ?>" />
                     <span class="text-danger"><?php echo form_error('fname'); ?></span>
                 </div>
@@ -39,12 +39,12 @@
                
                 
                 <div class="form-group">
-                    <label for="email">Email address</label>
+                    <label for="email">E-mail address</label>
                     <input class="form-control" name="email" placeholder="me@examaple.com" type="text" value="<?php echo set_value('email'); ?>" />
                     <span class="text-danger"><?php echo form_error('email'); ?></span>
                 </div>
 			 <div class="form-group">
-				<label for="name"> Comments</label>
+				<label for="name"> Enquiry text</label>
 				<textarea class="form-control" name="lname" placeholder="text..." rows="4" cols="50" value="<?php echo set_value('lname'); ?>" ></textarea>
 				<span class="text-danger"><?php echo form_error('lname'); ?></span>
 			</div>
