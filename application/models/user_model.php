@@ -19,7 +19,7 @@ class user_model extends CI_Model
         $from_email = 'willliam.pritchard@williampritchard.co.uk'; //change this to yours
         $subject = 'Verify Your Email Address';
         $message = 'Dear User,<br /><br />Please click on the below activation link to verify your email address.<br /><br /> http://www.mydomain.com/user/verify/' . md5($to_email) . '<br /><br /><br />Thanks<br />Mydomain Team';
-        
+        £message_blu = $this->load->view('template\receipt');
         //configure email settings
         /* $config['protocol'] = 'smtp';
         $config['smtp_host'] = 'ssl://smtp.williampritchard.co.uk'; //smtp host name
@@ -38,6 +38,14 @@ class user_model extends CI_Model
 		$this->email->bcc("enquiries@example.com");
         $this->email->subject($subject);
         $this->email->message($message);
+		
+		 $this->email_blubolt->from($from_email, 'Mydomain');
+        $this->email_blubolt->to($to_email);
+		//$this->email->bcc("enquiries@example.com");
+        $this->email_blubolt->subject($subject);
+        $this->email_blubolt->message($message_blu);
+		
+		$this->email_blubolt->send();
         return $this->email->send();
     }
     
