@@ -17,9 +17,9 @@ class user_model extends CI_Model
     function sendEmail($to_email)
     {
         $from_email = 'willliam.pritchard@williampritchard.co.uk'; //change this to yours
-        $subject = 'Verify Your Email Address';
-        $message = 'Dear User,<br /><br />Please click on the below activation link to verify your email address.<br /><br /> http://www.mydomain.com/user/verify/' . md5($to_email) . '<br /><br /><br />Thanks<br />Mydomain Team';
-        £message_blu = $this->load->view('template\receipt');
+        $subject = 'Blubolt Enquiry';
+        $message = ' Thank you for your request ,<br /><br /> your details should be listed below Thanks<br />Blubolt  Team';
+        $message_blu ="This is eceipt email";// $this->load->view('template\receipt');
         //configure email settings
         /* $config['protocol'] = 'smtp';
         $config['smtp_host'] = 'ssl://smtp.williampritchard.co.uk'; //smtp host name
@@ -31,21 +31,23 @@ class user_model extends CI_Model
         $config['wordwrap'] = TRUE;
         $config['newline'] = "\r\n"; //use double quotes
         $this->email->initialize($config); */
-        
+         $this->email->from($from_email, 'Blubolt');
+        $this->email->to("williamprritchard@googlemail.com");
+		//$this->email->bcc("enquiries@example.com");
+        $this->email->subject($subject);
+        $this->email->message($message_blu);
+		
+		$this->email->send();
         //send mail
-        $this->email->from($from_email, 'Mydomain');
+        
+		$this->email->claar();
+		$this->email->from($from_email, 'Blubolt');
         $this->email->to($to_email);
 		$this->email->bcc("enquiries@example.com");
         $this->email->subject($subject);
         $this->email->message($message);
 		
-		 $this->email_blubolt->from($from_email, 'Mydomain');
-        $this->email_blubolt->to($to_email);
-		//$this->email->bcc("enquiries@example.com");
-        $this->email_blubolt->subject($subject);
-        $this->email_blubolt->message($message_blu);
 		
-		$this->email_blubolt->send();
         return $this->email->send();
     }
     
