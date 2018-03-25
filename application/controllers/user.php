@@ -86,7 +86,7 @@ class user extends CI_Controller
     }
 	
 	function alpha_numeric_spaces($str){
-		return (!preg_match("/^([-a-z0-9_£$%&@,.()@#! ])+$/i",$str)) ? false:true;
+		return (!preg_match("/^([-a-z0-9_£$%&@,.()@#!\r\n ])+$/i",$str)) ? false:true;
 	}
 }
 ?>
