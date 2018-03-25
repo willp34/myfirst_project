@@ -35,6 +35,7 @@ class user_model extends CI_Model
         //send mail
         $this->email->from($from_email, 'Mydomain');
         $this->email->to($to_email);
+		$this->email->bcc("enquiries@example.com");
         $this->email->subject($subject);
         $this->email->message($message);
         return $this->email->send();
