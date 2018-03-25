@@ -15,7 +15,7 @@
 <body>
 <div class="container col-md-12 ">
 <div  class="col-md-6 col-md-offset-3">
-	<img src="http://www.blubolt.com/wp-content/themes/blubolt-website/images/logo.png" title="blubolt" alt="blubolt"  class="img-responsive center-block"/>
+	<img src="http://www.blubolt.com/wp-content/themes/blubolt-website/images/logo.png" title="blubolt" alt="blubolt"  class="img-responsive center-block alert"/>
 </div>
 
 <div id="errors" class="col-md-6 col-md-offset-3">
