@@ -19,7 +19,7 @@ class user_model extends CI_Model
         $from_email = 'willliam.pritchard@williampritchard.co.uk'; //change this to yours
         $subject = 'Blubolt Enquiry';
         $message = ' Thank you for your request ,<br /><br /> your details should be listed below Thanks<br />Blubolt  Team';
-        $message_blu ="This is receipt email";// $this->load->view('template\receipt');
+        $message_blu =$this->load->view('template\receipt');// "This is receipt email";
         //configure email settings
         /* $config['protocol'] = 'smtp';
         $config['smtp_host'] = 'ssl://smtp.williampritchard.co.uk'; //smtp host name
