@@ -15,6 +15,43 @@ class user extends CI_Controller
        // $this->register();
 	   $this->load->view('user_registration_view');
     }
+	 private function sendEmail($data)
+    {
+        $from_email = 'willliam.pritchard@williampritchard.co.uk'; //change this to yours
+        $subject = 'Blubolt Enquiry';
+       // $message = ' Thank you for your request ,<br /><br /> your details should be listed below Thanks<br />Blubolt  Team';
+      //  $message_blu =$this->load->view('template\receipt',$data,true);// "This is receipt email";
+        //configure email settings
+        /* $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.williampritchard.co.uk'; //smtp host name
+        $config['smtp_port'] = '465'; //smtp port number
+        $config['smtp_user'] = $from_email;
+        $config['smtp_pass'] = 'burton83'; //$from_email password*/
+        $config['mailtype'] = 'html';
+        $config['charset'] = 'iso-8859-1';
+        $config['wordwrap'] = TRUE;
+        $config['newline'] = "\r\n"; //use double quotes
+        $this->email->initialize($config); 
+         $this->email->from($from_email, 'Blubolt');
+        $this->email->to("williamprritchard@googlemail.com");
+		//$this->email->bcc("enquiries@example.com");
+        $this->email->subject($subject);
+        $this->email->message($this->load->view('receipt',$data,true));
+		
+		$this->email->send();
+        //send mail
+        
+		$this->email->clear();
+		$this->email->initialize($config); 
+		$this->email->from($from_email, 'Blubolt');
+        $this->email->to($data["email"]);
+		$this->email->bcc("enquiries@example.com");
+        $this->email->subject($subject);
+        $this->email->message($this->load->view('enquire',$data,true));
+		
+		
+        return $this->email->send();
+    }
 
     function register()
     {
@@ -47,7 +84,7 @@ class user extends CI_Controller
              if ($this->user_model->insertUser($data["result"]))
             {
                 // send email
-               if ($this->user_model->sendEmail($this->input->post('email')))
+               if ($this->sendEmail($data["result"]))
                 {
                     // successfully sent mail
                     $this->session->set_flashdata('msg','<div class="alert alert-success text-center">You are Successfully Registered! Please confirm the mail sent to your Email-ID!!!</div>');
