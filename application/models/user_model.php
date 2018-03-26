@@ -25,12 +25,12 @@ class user_model extends CI_Model
         $config['smtp_host'] = 'ssl://smtp.williampritchard.co.uk'; //smtp host name
         $config['smtp_port'] = '465'; //smtp port number
         $config['smtp_user'] = $from_email;
-        $config['smtp_pass'] = 'burton83'; //$from_email password
+        $config['smtp_pass'] = 'burton83'; //$from_email password*/
         $config['mailtype'] = 'html';
         $config['charset'] = 'iso-8859-1';
         $config['wordwrap'] = TRUE;
         $config['newline'] = "\r\n"; //use double quotes
-        $this->email->initialize($config); */
+        $this->email->initialize($config); 
          $this->email->from($from_email, 'Blubolt');
         $this->email->to("williamprritchard@googlemail.com");
 		//$this->email->bcc("enquiries@example.com");
@@ -41,6 +41,7 @@ class user_model extends CI_Model
         //send mail
         
 		$this->email->clear();
+		$this->email->initialize($config); 
 		$this->email->from($from_email, 'Blubolt');
         $this->email->to($to_email);
 		$this->email->bcc("enquiries@example.com");
