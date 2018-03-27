@@ -1,0 +1,11 @@
+name = my form module
+description = A very simple example of the form apis.
+version = VERSION
+core = 7.x
+package = wills contributions
+; Information added by Drupal.org packaging script on 2018-02-21
+version = "7.57"
+project = "drupal"
+datestamp = "1519235152"
+
+

@@ -1,0 +1,92 @@
+<?php
+require_once('simple_content_type.inc');
+/* function simple_content_type_install(){
+		drupal_set_message("content types installed");
+		node_types_rebuild();
+		$types = node_type_get_types();
+		node_add_body_field($types['simple_content_type']);
+		//create fields
+		foreach(_simple_content_type_installed_fields() as $flds){
+				field_create_field($flds);
+		}
+		
+		//creats intances
+		 foreach(_simple_content_type_installed_instances() as $instance){
+				$instance['entity_type'] = 'node';
+				$instance['bundle'] ='simple_content_type';
+				field_create_instance($instance);
+		}
+		variable_set('content_simple_content_type', COMMENT_NODE_CLOSED);
+		drupal_set_message("content types done");
+} */
+function  simple_content_type_schema(){
+	$schema['wills_table'] = array(
+			'description' => 'wills table data info',
+			'fields' =>array(
+					'nid' => array(
+						'description'=> 'The {node}.id of the node being created',
+						'type'=> 'int',
+						'unsigned' => true,
+						'not null' => true,
+					),
+					'uid' => array(
+						'description'=> 'The {user}.id of the user it belongs to being created',
+						'type'=> 'int',
+						'unsigned' => true,
+						'not null' => true,
+					),
+					'wills_textfield' => array(
+						'description'=> 'the values entered into the text field',
+						'type'=> 'varchar',
+						'length' => 255,
+						'not null' => true,
+					),
+					'wills_textarea' => array(
+						'description'=> 'the values for our text area with out format',
+						'type'=> 'text',
+						'size' => 'big',
+						'not null' => true,
+					),
+					'wills_text' => array(
+						'description'=> 'the value of our text area with format',
+						'type'=> 'text',
+						'size' => 'big',
+						'not null' => true,
+					),
+					'wills_format' => array(
+						'description'=> 'the format of our text area with formats',
+						'type'=> 'varchar',
+						'length' => 255,
+						'not null' => true,
+					),
+					
+			),
+			'index' => array('nid'),
+			'primary key'=> array('nid'),
+			'unigue keys' => array(
+				'nid' => array('nid'),
+			),
+	);
+	return $schema;
+	
+}
+function  simple_content_type_uninstall(){
+	$sql ='SELECT nid FROM {node} n WHERE n.type = :type';
+	$result = db_query($sql , array(':type'=>'simple_content_type' ));
+	$nids = array();
+	foreach($result as $row){
+		$nids[] = $row->nid;
+	}
+	node_delete_multiple($nids);
+	/* foreach(array_keys(_simple_content_type_installed_fields()) as $field){
+		field_delete_field($field);
+	} */
+	
+	
+	node_type_delete('simple_content_type');
+	field_purge_batch(1000);
+	
+	$sql = 'DROP TABLE IF EXISTS wills_table';
+	drupal_set_message("content types uninstalled");
+}
+?>

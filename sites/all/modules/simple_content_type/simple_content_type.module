@@ -1,0 +1,141 @@
+<?php 
+
+function simple_content_type_node_info(){
+	$items['simple_content_type'] = array(
+			'name' => t('wills content type'),
+			'type' =>'simple_content_type',
+			'base' =>'simple_content_type',
+			'description' => t('a simple content type for will'),
+			'has_title' => true,
+			'title_label' =>'wills title',
+			'help' => 'will helps'
+	);
+	return $items;
+}
+
+function simple_content_type_form($node, &$form_state){
+	if(!isset($node->nid)){
+		$title= "";
+		$txt_field ="";
+		$txt_area="";
+		$txtarea_with_formats="";
+		$txt_filters ="";
+	}
+	else{
+		$current_node = node_load($node->nid);
+		$title=$current_node->title;
+		//query
+		$data = db_select('wills_table','d')
+		->fields('d',array(
+			'wills_textfield',
+			'wills_textarea',
+			'wills_text',
+			'wills_format'))
+		->condition("d.nid",$node->nid)
+		->execute()
+		->fetchAssoc();
+		$txt_field =$data["wills_textfield"];
+		$txt_area=$data["wills_textarea"];
+		$txtarea_with_formats=$data["wills_text"];
+		$txt_filters =$data["wills_format"];
+		
+	
+	}
+	drupal_set_message("form  ". $title);
+	$form = array();
+	$form['wills_title'] = array(
+			'#title' => t(' title'),
+			'#type' => 'textfield',
+			'#default_value'=> $title,
+			'#required' => true
+	);
+	$form['wills_txt'] = array(
+			'#title' => t('email address'),
+			'#type' => 'textfield',
+			'#default_value'=> $txt_field,
+			'#required' => true
+	);
+	
+	$form['wills_txtarea'] = array(
+			'#title' => t('enter some plain text'),
+			'#type' => 'textarea',
+			'#default_value'=> $txt_area,
+			'#required' => true
+	);
+	
+	$form['wills_text'] = array(
+			'#title' => t('enter a formatted message'),
+			'#type' => 'text_format',
+			'#default_value'=> $txtarea_with_formats,
+			'#required' => true
+	);
+	return  $form;
+	
+}
+function simple_content_type_insert($node , &$form_state)
+{  
+	if($node>type !="simple_content_type"){
+			drupal_set_message("not new content type ");
+			return;
+		}
+	global $user;
+	$nid = $node->nid;
+	$uid = $node->uid;
+	$insert = db_insert('wills_table')
+		->fields(array(
+			'nid'=> $nid,
+			'uid'=> $uid,
+			'wills_textfield' => $node->wills_txt,
+			'wills_textarea'=> check_plain($node->wills_txtarea),
+			'wills_text' => check_markup($node->wills_text['value'], $node->wills_text['format']),
+			'wills_format' =>$node->wills_text['format'] ))
+		->execute();
+		
+	
+	drupal_set_message("insert  ". $node->wills_title);
+}
+function simple_content_type_node_submit($node , &$form_state){
+ 
+ 
+  switch($node->type)
+  {
+	  case "page":
+			drupal_set_message("submitted page ");
+			break;
+	 case "article":
+			drupal_set_message("submitted Article ");
+			break;
+	 case "simple_content_type":
+			drupal_set_message("submitted simple content type ".$node->wills_title);
+			$node->title= $node->wills_title;
+			break;
+  }
+		/* if($node>title!="tom")
+		{
+			drupal_set_message("submitted tom  ".$node->type);
+		}
+		if($node>type != "simple_content_type"){
+			$node->title="boo";
+			drupal_set_message("submitted   ".$node->type);
+			}else{
+				drupal_set_message("not submitted   ".$node->type."9");
+			} */
+}
+function simple_content_type_update($node , &$form_state){
+	//$upate_node= node_load($node->nid);
+	//$upate_node->title=$node->wills_title;
+	if($node>type !="simple_content_type"){
+			drupal_set_message("not new content type ");
+			return;
+		}
+	
+	$update = db_update('wills_table')
+		->fields(array(
+			'wills_textfield' => $node->wills_txt,
+			'wills_textarea'=> check_plain($node->wills_txtarea),
+			'wills_text' => check_markup($node->wills_text['value'], $node->wills_text['format']),
+			'wills_format' =>$node->wills_text['format'] ))
+		->condition('nid',$node->nid,'=')
+		->execute();	drupal_set_message("update overide  ".$node->type);
+}
+?>

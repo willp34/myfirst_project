@@ -1,0 +1,94 @@
+<?php
+
+
+function wills_form_menu(){
+	
+	$items = array();
+	
+	$items['examples/form'] = array(
+		'title' => 'My new form',
+		'description' => ' new form ceated',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('wills_form_page_form'),
+		'access callback' => true
+	);
+	
+	$items['examples/newpg/%'] = array(
+		'title' => 'My new page',
+		'description' => ' new page ceated',
+		 'type' => MENU_NORMAL_ITEM,
+		'page callback' => 'system_admin_menu_block_page',
+       'access arguments' => array('access content'),
+	);
+	
+	$items['admin/config/search/wills-config'] = array(
+		'title' => 'wills config for site',
+		'description' => ' new page ceated',
+		'page callback' => 'wills_form_config_block',
+       'access arguments' => array('access administration pages'),
+		'weight' => -10,
+	);
+	  $items['admin/config/search/wills-config/list'] = array(
+    'title' => 'List',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'weight' => -10,
+  );
+
+	$items['admin/config/search/wills-config/task1'] = array(
+		'title' => 'wills config for site task 1',
+		'description' => ' new page ceated config task 1',
+		'type' => MENU_LOCAL_TASK,
+		'weight' => 10,
+		'page callback' => 'wills_form_config_block_task1',
+       'access arguments' => array('access administration pages'),
+	);
+	return $items ;
+}
+function wills_form_config_block_task1(){
+	  return 'works task 1';
+  }
+  function wills_form_config_block(){
+	  return 'works';
+  }
+     /// 
+	function wills_form_page(){
+		$content = 'wills page  ';
+		return $content;
+	}
+	function wills_form_page_form($form, &$form_state){
+		$form['name'] = array(
+			'#type' => 'textfield',
+			'#title' => t('name'),
+			'#size' => 10,
+			'#class' =>'fieldname'
+		);
+		$form['price'] = array(
+			'#type' => 'textfield',
+			'#title' => t('price'),
+			'#size' => 10,
+			
+		
+		);
+		$form['submit_button'] = array(
+				'#type' => 'submit',
+				'#value'  => t('click')
+		);
+		return $form;
+	}
+	
+	function wills_form_page_form_validate($form, &$form_state){
+		
+		if(!($form_state['values']['price']>0)){
+				form_set_error('price',t('price must be positive'));
+		}
+		if(strlen($form_state['values']['name'])>7){
+				form_set_error('name',t('name is greater than seven characters'));
+		}
+		
+	}
+	
+	function wills_form_page_form_submit($form, &$form_state){
+		drupal_set_message( t('submitted  '). $form_state['values']['price']);
+	}
+
+?>
