@@ -42,7 +42,7 @@ var blu = {
 							//With the ".html()" method we include the html code returned by AJAX into the matches list
 						},
 	err :function(jqxHR, except){
-						$("#errors").html('<div class="alert alert-danger text-center">eror</div>');
+						$("#errors").html('<div class="alert alert-danger text-center">error</div>');
 					}
 };
 $(document).ready(blu.onReady);
