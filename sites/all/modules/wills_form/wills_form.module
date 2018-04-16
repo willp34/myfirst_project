@@ -9,10 +9,17 @@ function wills_form_menu(){
 		'title' => 'My new form',
 		'description' => ' new form ceated',
 		'page callback' => 'drupal_get_form',
-		'page arguments' => array('wills_form_page_form'),
+		'page arguments' => array(' wills_form_config_block'),
 		'access callback' => true
 	);
-	
+		$items['admin/config/search/wills-config'] = array(
+		'title' => 'wills config for site',
+		'description' => ' new page ceated',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array( 'wills_form_config_block'),
+       'access arguments' => array('access administration pages'),
+		'weight' => -10,
+	);
 	$items['examples/newpg/%'] = array(
 		'title' => 'My new page',
 		'description' => ' new page ceated',
@@ -21,13 +28,7 @@ function wills_form_menu(){
        'access arguments' => array('access content'),
 	);
 	
-	$items['admin/config/search/wills-config'] = array(
-		'title' => 'wills config for site',
-		'description' => ' new page ceated',
-		'page callback' => 'wills_form_config_block',
-       'access arguments' => array('access administration pages'),
-		'weight' => -10,
-	);
+
 	  $items['admin/config/search/wills-config/list'] = array(
     'title' => 'List',
     'type' => MENU_DEFAULT_LOCAL_TASK,
@@ -47,8 +48,140 @@ function wills_form_menu(){
 function wills_form_config_block_task1(){
 	  return 'works task 1';
   }
-  function wills_form_config_block(){
-	  return 'works';
+  function wills_form_config_block($form,  &$form_state){
+	$form = array();
+	
+	$form = generate_form($form,$form_state);
+	return $form;
+  
+  }
+  
+  function generate_form($form,&$form_state=null){
+
+	  
+	  $form['group1'] = array(
+	  '#type' => 'fieldset',
+	  '#title' => t('Personal Details '),
+	  '#collapsible' => false,
+	  '#collapsed' => false,
+	  //'#prefix' => '<div id="div-per">',
+	  //'#suffix' => '</div>',
+	 //  '#attributes' => array( 'class' => array( 'panel'))
+	);
+
+	$form['group1']['first_name'] = array(
+	  '#type' => 'textfield',
+	  '#title' => t('First Name'),
+	 
+	);
+  
+	$form['group1']['last_name'] = array(
+	  '#type' => 'textfield',
+	  '#title' => t('Last Name'),
+	);
+	
+	$form['group1']['education_option'] = array(
+		'#type' => 'radios',
+		'#title' => t('Eduction'),
+		'#options' => array(0 =>t('No'),1=>t('Yes')	  ),
+	  '#default_value'=> 0,
+	  '#ajax' => array(
+				  'callback' => 'ajax_example_autocheckboxes_callback',
+				  'wrapper' => 'div-ed',
+				 // 'method' => 'replace',
+				  'effect' => 'fade',
+				),
+	);
+	
+		if(isset($form_state["values"]["education_option"]) && ($form_state["values"]["education_option"]>0))
+			{
+					$form = education_group($form);	
+					if($form_state["values"]["wrk_option"]>0){
+						$form = work_group($form);
+					}
+					
+					//print("tim");
+			}
+			else{
+				 $form["html"] = array(
+						"#type" =>'markup',
+						'#markup' =>'<div id="div-ed"  class=""></div>'
+					);
+				 $form["html2"] = array(
+						"#type" =>'markup',
+						'#markup' =>'<div id="div-wrk"  class=""></div>'
+					);
+					
+			}
+		//$form = work_group($form);
+		
+	return $form;
+  }
+  function education_group($form){
+	  
+	$form['group2'] = array(
+	  '#type' => 'fieldset',
+	  '#title' => t('Eduction '),
+	  '#collapsible' => false,
+	  '#collapsed' => false,
+	  '#prefix' => '<div id="div-ed"   style="margin-bottom:20px">',
+	  //'#suffix' => '</div>',
+	 //  '#attributes' => array( 'class' => array( 'panel'))
+	);
+
+	$form['group2']['first_name'] = array(
+	  '#type' => 'textfield',
+	  '#title' => t('First Name'),
+	 
+	);
+
+	$form['group2']['last_name'] = array(
+	  '#type' => 'textfield',
+	  '#title' => t('Last Name'),
+	);
+	$form['group2']['wrk_option'] = array(
+		'#type' => 'radios',
+		'#title' => t('Work'),
+		'#options' => array(0 =>t('No'),1=>t('Yes')	  ),
+	  '#default_value'=> 0,
+	  '#ajax' => array(
+				  'callback' => 'work_group_radio_callback',
+				  'wrapper' => 'div-wrk',
+				 // 'method' => 'replace',
+				  'effect' => 'fade',
+				),
+	);
+	
+	return $form;
+  
+  }
+  
+  
+  
+  function work_group($form){
+	  
+	  $form['group3'] = array(
+	  '#type' => 'fieldset',
+	  '#title' => t('Work'),
+	  '#collapsible' => false,
+	  '#collapsed' => false,
+	  
+	  '#prefix' => '<div id="div-wrk"   style="margin-bottom:20px">',
+	  '#suffix' => '</div>',
+	 //  '#attributes' => array( 'class' => array( 'panel'))
+	);
+
+	$form['group3']['first_name'] = array(
+	  '#type' => 'textfield',
+	  '#title' => t('First Name'),
+	 
+	);
+
+	$form['group3']['last_name'] = array(
+	  '#type' => 'textfield',
+	  '#title' => t('Last Name'),
+	);  
+	  return $form;
   }
      /// 
 	function wills_form_page(){
@@ -56,22 +189,13 @@ function wills_form_config_block_task1(){
 		return $content;
 	}
 	function wills_form_page_form($form, &$form_state){
-		$form['name'] = array(
-			'#type' => 'textfield',
-			'#title' => t('name'),
-			'#size' => 10,
-			'#class' =>'fieldname'
-		);
-		$form['price'] = array(
-			'#type' => 'textfield',
-			'#title' => t('price'),
-			'#size' => 10,
-			
-		
-		);
+		$form = array();
+		$form = generate_form($form, $form_state);
+	
 		$form['submit_button'] = array(
 				'#type' => 'submit',
-				'#value'  => t('click')
+				'#value'  => t('click me'),
+				
 		);
 		return $form;
 	}
@@ -91,4 +215,41 @@ function wills_form_config_block_task1(){
 		drupal_set_message( t('submitted  '). $form_state['values']['price']);
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	/**
+ * Callback element needs only select the portion of the form to be updated.
+ * Since #ajax['callback'] return can be HTML or a renderable array (or an
+ * array of commands), we can just return a piece of the form.
+ */
+function ajax_example_autocheckboxes_callback($form, &$form_state) {
+	//print_r($form["group1"]["education_option"]['#options']);
+	//$ed_option = $form["education_option"];
+	if($form_state["values"]["education_option"]>0){
+		
+		return $form['group2'];
+	}
+		
+	else{
+		 
+		return  '<div id="div-ed">  </div>';
+	}
+	
+}
+
+function work_group_radio_callback($form, &$form_state){
+	if($form_state["values"]["wrk_option"]>0){
+		
+		return $form['group3'];
+	}
+		
+	else{
+		return  '<div id="div-wrk">  </div>';
+	}
+}
 ?>
