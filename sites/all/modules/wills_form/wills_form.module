@@ -237,12 +237,12 @@ function ajax_example_autocheckboxes_callback($form, &$form_state) {
 	//$ed_option = $form["education_option"];
 	if($form_state["values"]["education_option"]>0){
 		
-		return $form['will']['group2'];
+		return $form['will'];
 	}
 		
 	else{
 		 
-		return  '<div id="div-will">  tim</div>';
+		return  '<div id="div-will" style="background-color:red">  tim</div>';
 	}
 	
 }
@@ -250,7 +250,7 @@ function ajax_example_autocheckboxes_callback($form, &$form_state) {
 function work_group_radio_callback($form, &$form_state){
 	if($form_state["values"]["wrk_option"]>0){
 		
-		return $form['group3'];
+		return $form['will']['group3'];
 	}
 		
 	else{
