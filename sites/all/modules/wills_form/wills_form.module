@@ -87,7 +87,7 @@ function wills_form_config_block_task1(){
 	  '#default_value'=> 0,
 	  '#ajax' => array(
 				  'callback' => 'ajax_example_autocheckboxes_callback',
-				  'wrapper' => 'div-ed',
+				  'wrapper' => 'will-div',
 				 // 'method' => 'replace',
 				  'effect' => 'fade',
 				),
@@ -103,9 +103,10 @@ function wills_form_config_block_task1(){
 					//print("tim");
 			}
 			else{
-				 $form["html"] = array(
+				$form["will"] = array(
 						"#type" =>'markup',
-						'#markup' =>'<div id="div-ed"  class=""></div>'
+						'#prefix' =>'<div id="will-div" style="background-color:red"  class=""> hi',
+						'#suffix' => '</div>',
 					);
 				 $form["html2"] = array(
 						"#type" =>'markup',
@@ -118,28 +119,32 @@ function wills_form_config_block_task1(){
 	return $form;
   }
   function education_group($form){
-	  
-	$form['group2'] = array(
+	  $form["will"] = array(
+						"#type" =>'markup',
+						'#prefix' =>'<div id="will-div" style="background-color:red"  class=""> hi',
+						'#suffix' => '</div>',
+					);
+	$form['will']['group2'] = array(
 	  '#type' => 'fieldset',
 	  '#title' => t('Eduction '),
 	  '#collapsible' => false,
 	  '#collapsed' => false,
-	  '#prefix' => '<div id="div-ed"   style="margin-bottom:20px">',
-	  //'#suffix' => '</div>',
+	  '#prefix' => '<div id="div-will"   style="background-color:red; margin-bottom:20px">',
+	  '#suffix' => '</div>',
 	 //  '#attributes' => array( 'class' => array( 'panel'))
 	);
 
-	$form['group2']['first_name'] = array(
+	$form['will']['group2']['first_name'] = array(
 	  '#type' => 'textfield',
 	  '#title' => t('First Name'),
 	 
 	);
 
-	$form['group2']['last_name'] = array(
+	$form['will']['group2']['last_name'] = array(
 	  '#type' => 'textfield',
 	  '#title' => t('Last Name'),
 	);
-	$form['group2']['wrk_option'] = array(
+	$form['will']['group2']['wrk_option'] = array(
 		'#type' => 'radios',
 		'#title' => t('Work'),
 		'#options' => array(0 =>t('No'),1=>t('Yes')	  ),
@@ -160,7 +165,7 @@ function wills_form_config_block_task1(){
   
   function work_group($form){
 	  
-	  $form['group3'] = array(
+	  $form['will']['group3'] = array(
 	  '#type' => 'fieldset',
 	  '#title' => t('Work'),
 	  '#collapsible' => false,
@@ -171,13 +176,13 @@ function wills_form_config_block_task1(){
 	 //  '#attributes' => array( 'class' => array( 'panel'))
 	);
 
-	$form['group3']['first_name'] = array(
+	$form['will']['group3']['first_name'] = array(
 	  '#type' => 'textfield',
 	  '#title' => t('First Name'),
 	 
 	);
 
-	$form['group3']['last_name'] = array(
+	$form['will']['group3']['last_name'] = array(
 	  '#type' => 'textfield',
 	  '#title' => t('Last Name'),
 	);  
@@ -232,12 +237,12 @@ function ajax_example_autocheckboxes_callback($form, &$form_state) {
 	//$ed_option = $form["education_option"];
 	if($form_state["values"]["education_option"]>0){
 		
-		return $form['group2'];
+		return $form['will']['group2'];
 	}
 		
 	else{
 		 
-		return  '<div id="div-ed">  </div>';
+		return  '<div id="div-will">  tim</div>';
 	}
 	
 }
