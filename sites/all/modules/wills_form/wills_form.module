@@ -130,7 +130,7 @@ function wills_form_config_block_task1(){
 	);
 
 	$form['group2']['first_name'] = array(
-	  '#type' => 'textfield',
+	  '#type' => 'file',
 	  '#title' => t('First Name'),
 	 
 	);
