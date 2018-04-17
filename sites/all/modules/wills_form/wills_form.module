@@ -121,7 +121,7 @@ function wills_form_config_block_task1(){
   function education_group($form){
 	  $form["will"] = array(
 						"#type" =>'markup',
-						'#prefix' =>'<div id="will-div" style="background-color:red"  class=""> hi',
+						'#prefix' =>'<div id="will-div" style="background-color:red;  height:200"  class="">tom',
 						'#suffix' => '</div>',
 					);
 	$form['will']['group2'] = array(
@@ -233,21 +233,22 @@ function wills_form_config_block_task1(){
  * array of commands), we can just return a piece of the form.
  */
 function ajax_example_autocheckboxes_callback($form, &$form_state) {
-	//print_r($form["group1"]["education_option"]['#options']);
+	//print_r($form["will"]);
 	//$ed_option = $form["education_option"];
 	if($form_state["values"]["education_option"]>0){
-		
+		///print_r( $form['will']);
 		return $form['will'];
 	}
 		
 	else{
 		 
-		return  '<div id="div-will" style="background-color:red">  tim</div>';
+		return  '<div id="will-div" style="background-color:red ;  height:200px"> pink </div>';
 	}
 	
 }
 
 function work_group_radio_callback($form, &$form_state){
+	
 	if($form_state["values"]["wrk_option"]>0){
 		
 		return $form['will']['group3'];
