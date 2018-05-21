@@ -23,7 +23,7 @@
       <li ><a href="<?php echo base_url() ?>">Calendar Display</a></li>
    
       <li class="active"><a href="<?php echo base_url("/index.php/hello_future/import") ?>">import</a></li>
-      <li><a href="#">Tests</a></li>
+      <li><a href="<?php echo base_url("/index.php/hello_furture_tests/") ?>">Tests</a></li>
     </ul>
   </div>
 </nav>
