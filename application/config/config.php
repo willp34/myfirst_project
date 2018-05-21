@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/blubolt_demo/';
+$config['base_url']	= 'http://localhost/hello_future/';
 
 /*
 |--------------------------------------------------------------------------
