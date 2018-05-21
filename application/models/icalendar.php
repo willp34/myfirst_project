@@ -24,6 +24,13 @@ class icalendar extends CI_Model
 		
 	}
 	
+	function getmonth_firstDate(){
+		$this->db->select(" Date_format(start_date,'%m/%01/%Y') as first_date", false);
+		$this->db->from("icalendar");
+		$this->db->group_by('start_date'); 
+		return $this->db->get()->row()->first_date;
+	}
+	
 	function unbooked_slots($week_number){
 		$this->db->select("* , (8-sum(numberHours)) as unbooked  , week(start_date) - week(Date_format(start_date,'%Y-%m-%01'))+1 as wkNo", false);
 		//$this->db->select("Date_format(start_date,'%Y-%m-%01')  AS wkNo",false);

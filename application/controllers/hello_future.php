@@ -20,15 +20,14 @@ class hello_future extends CI_Controller
 	if(!empty($this->icalendar->showIcal_records("Normal")))
 	{
 	    $no_weeks = $this->workingdays->get_weeks(date('Y',strtotime($this->icalendar->unbooked_slots(1)[0]->start_date)),date('m',strtotime($this->icalendar->unbooked_slots(1)[0]->start_date)) );
-	    echo "number of weeks  $no_weeks";
-		$format= strtotime( "07/01/2014");
+		$format= strtotime(  $this->icalendar->getmonth_firstDate());
 		$monthly_statistics= array();
 		$working_days["description"] = "Number of working hours ".date('M Y',$format);
-		$working_days["total"] = count( $this->workingdays->working_days_in_month("07/01/2014"))*8;
+		$working_days["total"] = count( $this->workingdays->working_days_in_month( $this->icalendar->getmonth_firstDate()))*8;
 		$hours_booked["description"] = "Number of hours booked ".date('M Y',$format);
 		$hours_booked["total"] = $this->icalendar->total_hours_worked("Normal")->numberHours;
 		$hours_unbooked["description"] = "Number of hours unbooked ".date('M Y',$format);
-		$hours_unbooked["total"] = (count( $this->workingdays->working_days_in_month("07/01/2014"))*8) -($this->icalendar->total_hours_worked("Normal")->numberHours);
+		$hours_unbooked["total"] = (count( $this->workingdays->working_days_in_month( $this->icalendar->getmonth_firstDate()))*8) -($this->icalendar->total_hours_worked("Normal")->numberHours);
 		$overtime["description"] = "over time  ".date('M Y',$format);
 		$overtime["total"] = $this->icalendar->total_hours_worked("Overtime")->numberHours;
 		
