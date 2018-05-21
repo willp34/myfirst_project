@@ -139,12 +139,13 @@ class hello_future extends CI_Controller
 						"overtime" => $over_time
 						);
 			$this->icalendar->insertIcal($Ical_record);			
-			echo "<p>$summary</p>";
+			/* echo "<p>$summary</p>";
 			echo "<p>Start : $startDate   $startTime</p>";
 			echo "<p> $endDate  $endTime</p>";
 			echo "<p>Lenth of task : $hoursWorked  $typeofWork</p>";
-			echo "<p>Overtime  $over_time</p>";
+			echo "<p>Overtime  $over_time</p>"; */
 		}
+		echo "imported successfully";
 	}
 	/**
 	*  Takes in Param @data_string and returns date in dd/mm/yyyy format
@@ -153,7 +154,7 @@ class hello_future extends CI_Controller
 		$end_dttimearr = explode('T', $date_string);
 		
 		$date_end = date_create($end_dttimearr[0])->format('Y/m/d');
-		echo $date_end. "    ";
+		
 		return $date_end;
 	}
 	
