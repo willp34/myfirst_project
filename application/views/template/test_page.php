@@ -1,0 +1,3 @@
+{rows}
+    {item}
+{/rows}
