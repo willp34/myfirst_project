@@ -9,6 +9,10 @@ class hello_furture_tests extends CI_Controller
         $this->load->helper(array('form','url'));
         $this->load->library(array('session', 'form_validation', 'googlecal', 'workingdays', 'unit_test'));
         $this->load->model('icalendar');
+	if(empty($this->icalendar->showIcal_records("Normal")))
+	{
+		   exit('No direct script access allowed');
+		}
     }
 	public function index(){
 		
