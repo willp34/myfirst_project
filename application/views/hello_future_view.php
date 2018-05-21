@@ -13,6 +13,19 @@
   
 	</head>
 <body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="<?php echo base_url() ?>">Calendar Display</a></li>
+   
+      <li ><a href="<?php echo base_url("/index.php/hello_future/import") ?>">import</a></li>
+      <li><a href="<?php echo base_url("/index.php/hello_furture_tests/") ?>">Tests</a></li>
+    </ul>
+  </div>
+</nav>
 <div class="container col-md-12 ">
      <h1>Hello future App   </h1>
 	 <div  id="message"></div>
