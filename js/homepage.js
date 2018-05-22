@@ -1,7 +1,6 @@
 var blu = {
-	data :{ "a": "text", "b": "1.00", "c": 1, "d": "2", "e": 5.1, "f": [1], "g": { "v": 1.5 } },
 	onReady : function(){
-				var str =[{ "a": "text", "b": "1.00", "c": 1, "d": "2", "e": 5.1, "f": [1], "g": { "v": 1.5 } }];
+				 // array to add correct values
 				var dataparse = [];
 				
 				
@@ -18,11 +17,9 @@ var blu = {
 							  if(!$.isArray(value)){
 									if($.isNumeric(value)){
 										dataparse.push(parseFloat(value));
-									  console.log("now "+ value);
+									
 								}  
-								  
 							  }
-					
 				}
 				
 		data ={ "a": "text", "b": "1.00", "c": 1, "d": "2", "e": 5.1, "f": [1], "g": { "v": 1.5 } },

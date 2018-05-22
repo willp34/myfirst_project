@@ -17,7 +17,7 @@ function monthly_pay_dates(){
 		$pay_day =0;
 		///pay days
 		if(($last_day=="Sat")){
-			// ameranise the dates
+			// americanise the dates
 			// todays date
 			$dateold= date("m/d/Y",mktime(0,0,0 , $i+1, 0, date("Y")));
 			// - 1 day
@@ -25,7 +25,7 @@ function monthly_pay_dates(){
 			$pay_day = $yesterday;
 		}
 		else if($last_day=="Sun"){
-			// ameranise the dates
+			// ameracanise the dates
 			// todays date
 			$dateold= date("m/d/Y",mktime(0,0,0 , $i+1, 0, date("Y")));
 			// on sundy - 2 days
@@ -52,7 +52,7 @@ function monthly_pay_dates(){
 
 		$bonus_payout = date("w  D d/m/y",mktime(0,0,0 , $i,15, date("Y")));
 		}
-		
+		// assocc array to add month info
 		$monthlyInfo["month_name"] = $monthName;
 		$monthlyInfo["pay_day"] = $pay_day;
 		$monthlyInfo["bonus_payout"] = $bonus_payout;
@@ -61,13 +61,16 @@ function monthly_pay_dates(){
 	}
 	return $monthly_report;
 }
-
+/*
+function  to create csv file from command line
+*/
 function generate_csv($report, $arg){
 	$csv_file = fopen("$arg.csv", 'w');
 		foreach($report as $flds){
 			fputcsv($csv_file, $flds);
 		}
 		fclose($csv_file);
+		// return messsage
 		echo "file created $arg.csv ";
 }
 		
