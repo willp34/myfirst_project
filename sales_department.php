@@ -6,7 +6,7 @@ function monthly_pay_dates(){
 		
 	$monthly_report = array();
 	$month = 12;
-	for ($i=1 ; $i<=12; $i++)
+	for ($i=date('m') ; $i<=12; $i++)
 	{
 		$monthName =date("F",mktime(0,0,0 , $i, 1));
 		$first_day = date("D",mktime(0,0,0 , $i, 1, date("Y"))); 	
