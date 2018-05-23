@@ -1,6 +1,10 @@
 <?php
-
-generate_csv(monthly_pay_dates(), $argv[1] ); 
+if(empty($argv[1])){
+	$csv_file_name = "default";
+}else{
+	$csv_file_name = $argv[1];
+}
+generate_csv(monthly_pay_dates(), $csv_file_name ); 
 
 function monthly_pay_dates(){
 		
