@@ -39,7 +39,7 @@
                 </div>
                 <?php echo form_close(); ?>
 	 <div class="table-responsive col-md-6">
-					 <table id="products" class="table table-striped table-bordered table-hover">
+					 <table id="products_edit" class="table table-striped table-bordered table-hover">
 					  <thead>
 							  <tr>
 								<th>Summary</th>
@@ -54,6 +54,7 @@
 												<td> <?php echo  $record->summary ?></td>
 												<td> <?php echo  $record->numberHours  ?></td>
 												<td> <?php echo  $record->typeWork  ?></td>
+												
 										 </tr>
 										<?php
 									}
@@ -140,6 +141,7 @@
 			  crossorigin="anonymous"></script>
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script  src="<?php echo base_url("js/bootstable.js"); ?>"></script>
     <script  type="text/javascript" src="<?php echo base_url("js/homepage.js"); ?>" ></script>
   
 </body>

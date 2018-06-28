@@ -80,12 +80,8 @@ class hello_future extends CI_Controller
 	}
 	
 	private function IcalImport(){
-		
-		
 			//echo "hi  ";
         $googleArr = $this->googlecal->load(file_get_contents( 'basic.ics' ));
-		
-		
 	   //$this->load->view('user_registration_view');
 		foreach($googleArr["VEVENT"] as $calItem ){
 		
@@ -98,15 +94,6 @@ class hello_future extends CI_Controller
 			
 			$endDate = $this->getFormatforDate($calItem["DTEND"]);
 			$endTime =intval($this->getFormatforTime( $calItem["DTEND"]));
-						/* $date = str_replace('/', '-', $endDate);
-						$from_time = date('Y-m-d', strtotime($date));
-						
-						
-						$date = str_replace('/', '-', $startDate);
-						$to_time = date('Y-m-d', strtotime($date));
-						$from_time = strtotime($from_time ." ".$this->getFormatforTime( $calItem["DTSTART"]));
-						 $to_time  =strtotime( $to_time." ".$this->getFormatforTime( $calItem["DTEND"]));
-						echo round(abs($to_time - $from_time) / 60,2). " minute"; */
 			// time spent on projects
 			$lengthOfwork = $endTime - $startTime; 
 			$typeofWork = ($endTime >17.5) ? "Overtime" : "Normal";
@@ -150,10 +137,8 @@ class hello_future extends CI_Controller
 	*  Takes in Param @data_string and returns date in dd/mm/yyyy format
 	*/
 	private function getFormatforDate($date_string){
-		$end_dttimearr = explode('T', $date_string);
-		
-		$date_end = date_create($end_dttimearr[0])->format('Y/m/d');
-		
+		$end_dttimearr = explode('T', $date_string);		
+		$date_end = date_create($end_dttimearr[0])->format('Y/m/d');		
 		return $date_end;
 	}
 	

@@ -18,7 +18,7 @@
 	<img src="http://www.blubolt.com/wp-content/themes/blubolt-website/images/logo.png" title="blubolt" alt="blubolt"  class="img-responsive center-block alert"/>
 </div>
 
-<div id="errors" class="col-md-6 col-md-offset-3">
+<div id="message" class="col-md-6 col-md-offset-3">
 </div>
 
 <div class="row">
@@ -28,7 +28,7 @@
                 <h4>Customer Enquiry Form</h4>
             </div>
             <div class="panel-body">
-                <?php $attributes = array("id" => "target","name" => "registrationform");
+                <?php $attributes = array("id" => "ical_form","name" => "registrationform");
                 echo form_open("user/register", $attributes);?>
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -98,6 +98,7 @@
 			  crossorigin="anonymous"></script>
 	<!-- Latest compiled JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script  src="<?php echo base_url("js/bootstable.js"); ?>"></script>
     <script  type="text/javascript" src="<?php echo base_url("js/homepage.js"); ?>" ></script>
   
 </body>

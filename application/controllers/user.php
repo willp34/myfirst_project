@@ -13,20 +13,17 @@ class user extends CI_Controller
     function index()
     {
        // $this->register();
+	   // set up initial view and show an enquiry form to end user	   
 	   $this->load->view('user_registration_view');
     }
+	
+	/*
+	Send email on successfull submittion of form
+	*/
 	 private function sendEmail($data)
     {
         $from_email = 'willliam.pritchard@williampritchard.co.uk'; //change this to yours
         $subject = 'Blubolt Enquiry';
-       // $message = ' Thank you for your request ,<br /><br /> your details should be listed below Thanks<br />Blubolt  Team';
-      //  $message_blu =$this->load->view('template\receipt',$data,true);// "This is receipt email";
-        //configure email settings
-        /* $config['protocol'] = 'smtp';
-        $config['smtp_host'] = 'ssl://smtp.williampritchard.co.uk'; //smtp host name
-        $config['smtp_port'] = '465'; //smtp port number
-        $config['smtp_user'] = $from_email;
-        $config['smtp_pass'] = 'burton83'; //$from_email password*/
         $config['mailtype'] = 'html';
         $config['charset'] = 'iso-8859-1';
         $config['wordwrap'] = TRUE;
@@ -34,8 +31,7 @@ class user extends CI_Controller
         $this->email->initialize($config); 
          $this->email->from($from_email, 'Blubolt');
         $this->email->to("williamprritchard@googlemail.com");
-		//$this->email->bcc("enquiries@example.com");
-        $this->email->subject($subject);
+		$this->email->subject($subject);
         $this->email->message($this->load->view('receipt',$data,true));
 		
 		$this->email->send();
@@ -52,7 +48,9 @@ class user extends CI_Controller
 		
         return $this->email->send();
     }
-
+/*
+*  ajax call to submit enquiry information
+*/
     function register()
     {
 		$responce ="";
@@ -121,7 +119,9 @@ class user extends CI_Controller
             redirect('user/register');
         }
     }
-	
+	/*
+	   regular expression 
+	*/
 	function alpha_numeric_spaces($str){
 		return (!preg_match("/^([-a-z0-9_£$%&@,.()@#!\r\n ])+$/i",$str)) ? false:true;
 	}

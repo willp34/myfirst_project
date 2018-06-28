@@ -23,7 +23,6 @@ class icalendar extends CI_Model
 		return $this->db->get()->result();
 		
 	}
-	
 	function getmonth_firstDate(){
 		$this->db->select(" Date_format(start_date,'%m/%01/%Y') as first_date", false);
 		$this->db->from("icalendar");
