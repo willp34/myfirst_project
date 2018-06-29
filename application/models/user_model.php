@@ -12,46 +12,6 @@ class user_model extends CI_Model
     {
         return $this->db->insert('mailing_list', $data);
     }
-    
-    //send verification email to user's email id
-    /* function sendEmail($data)
-    {
-        $from_email = 'willliam.pritchard@williampritchard.co.uk'; //change this to yours
-        $subject = 'Blubolt Enquiry';
-        $message = ' Thank you for your request ,<br /><br /> your details should be listed below Thanks<br />Blubolt  Team';
-        $message_blu =$this->load->view('template\receipt',$data,true);// "This is receipt email";
-        //configure email settings
-        /* $config['protocol'] = 'smtp';
-        $config['smtp_host'] = 'ssl://smtp.williampritchard.co.uk'; //smtp host name
-        $config['smtp_port'] = '465'; //smtp port number
-        $config['smtp_user'] = $from_email;
-        $config['smtp_pass'] = 'burton83'; //$from_email password
-        $config['mailtype'] = 'html';
-        $config['charset'] = 'iso-8859-1';
-        $config['wordwrap'] = TRUE;
-        $config['newline'] = "\r\n"; //use double quotes
-        $this->email->initialize($config); 
-         $this->email->from($from_email, 'Blubolt');
-        $this->email->to("williamprritchard@googlemail.com");
-		//$this->email->bcc("enquiries@example.com");
-        $this->email->subject($subject);
-        $this->email->message($this->load->view('template/receipt',$data,true));
-		
-		$this->email->send();
-        //send mail
-        
-		$this->email->clear();
-		$this->email->initialize($config); 
-		$this->email->from($from_email, 'Blubolt');
-        $this->email->to($data["email"]);
-		$this->email->bcc("enquiries@example.com");
-        $this->email->subject($subject);
-        $this->email->message($message);
-		
-		
-        return $this->email->send();
-    } */
-    
     //activate user account
     function verifyEmailID($key)
     {
